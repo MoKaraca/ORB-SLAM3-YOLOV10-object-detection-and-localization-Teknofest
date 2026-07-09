@@ -3,36 +3,23 @@
 ![ROS2](https://img.shields.io/badge/ROS2-Humble-blue.svg)
 ![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)
 
-# ROS2 ORB SLAM3 V1.0 package (Teknofest Edition)
+# ROS2 ORB SLAM3 LOCALIZATION & YOLOV10 OBJECT DETECTION
 
-A ROS2 package for ORB SLAM3 V1.0. Focus is on native integration with the ROS2 ecosystem. This version has been adapted and personalized for my Teknofest project (ORB-SLAM3 + YOLOv10 Object Detection and Localization).
-
-My goal is to provide a solid, reliable starting point for using the ORB SLAM3 framework in ROS 2. This repository builds upon the original work by Azmyin Md. Kamal and the excellent ROS1 port of ORB SLAM3 by [thien94](https://github.com/thien94/orb_slam3_ros/tree/master). 
+ 
 
 ## 🚀 Recent Improvements & Customizations
 
-We've made several critical improvements to the original package to make it more robust and easier to use with custom cameras and live streams:
+I've made several critical improvements to the original package to make it more
+ robust and easier to use with custom cameras and live streams:
 
-* **Standardized ROS 2 Image Headers:** We completely removed the custom separate `/mono_py_driver/timestep_msg` topic. Timestamps are now natively embedded and extracted directly from the `sensor_msgs/msg/Image` header, adhering to ROS 2 best practices and preventing synchronization drift.
+* **Standardized ROS 2 Image Headers:** I completely removed the custom separate `/mono_py_driver/timestep_msg` topic. Timestamps are now natively embedded and extracted directly from the `sensor_msgs/msg/Image` header, adhering to ROS 2 best practices and preventing synchronization drift.
 * **Smart Python Driver:** The `mono_driver_node.py` has been upgraded to automatically filter out non-image files (like `.json`).
-* **Universal Dataset Support:** You no longer need to rename your custom images to massive nanosecond Unix timestamps! If the driver detects standard sequential filenames (like `frame_000000.jpg`), it will automatically generate perfectly spaced nanosecond timestamps for you (assuming a 30 FPS camera). This makes it universally compatible with both official EuRoC datasets and arbitrary custom image folders.
+* **Universal Dataset Support:** You no longer need to rename your custom images to massive nanosecond Unix timestamps. If the driver detects standard sequential filenames (like `frame_000000.jpg`), it will automatically generate perfectly spaced nanosecond timestamps for you (assuming a 30 FPS camera). This makes it universally compatible with both official EuRoC datasets and arbitrary custom image folders.
 
-## 0. Preamble
-
-* This package builds [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) V1.0 as a shared internal library. Comes included with a number of Thirdparty libraries [DBoW2, g2o, Sophus]
-* g2o used is an older version and is incompatible with the latest release found here [g2o github page](https://github.com/RainerKuemmerle/g2o).
-* This package differs from other ROS1 wrappers, thien94`s ROS 1 port and ROS 2 wrappers in GitHub by supprting/adopting the following
-  * A separate python node to send data to the ORB-SLAM3 cpp node. This is purely a design choice.
-  * At least C++17 and Cmake>=3.8
-  * Eigen 3.3.0, OpenCV 4.2, latest release of Pangolin
-* Comes with a small test image sequence from EuRoC MAV dataset (MH05) to quickly test installation
-* For newcomers in ROS2 ecosystem, this package serves as an example of building a shared cpp library and also a package with both cpp and python nodes.
-* May not build or work correctly in **resource constrainted hardwares** such as Raspberry Pi 4, Jetson Nano
 
 ## Testing platforms
 
-1. Intel i5-9300H, x86_64 bit architecture , Ubuntu 22.04 LTS (Jammy Jellyfish) and RO2 Humble Hawksbill (LTS)
-2. AMD Ryzen 5600X, x86_64 bit architecture, Ubuntu 22.04 LTS (Jammy Jellyfish) and RO2 Humble Hawksbill (LTS)
+1. Ryzen 5 7500f, x86_64 bit architecture , Ubuntu 22.04 LTS (Jammy Jellyfish) and RO2 Humble Hawksbill (LTS)
 
 ## 1. Prerequisitis
 
@@ -99,7 +86,7 @@ python3 -c "import cv2; print(cv2.__version__)"
 
 ## 2. Installation
 
-Follow the steps below to create the ```ros2_test``` workspace, install dependencies and build the package. Note, the workspace must be named ```ros2_test``` due to a HARDCODED path in the python node. I leave it to the developers to change this behavior as they see fit.
+Follow the steps below to create the ```ros2_test``` workspace, install dependencies and build the package. Note, the workspace must be named ```ros2_test``` due to a HARDCODED path in the python node.
 
 ```bash
 cd ~
@@ -118,7 +105,7 @@ Run the builtin example to verify the package is working correctly
 In one terminal [cpp node]
 
 ```bash
-cd ~/ros2_ws/
+cd ~/ros2_test/
 source ./install/setup.bash
 ros2 run ros2_orb_slam3 mono_node_cpp --ros-args -p node_name_arg:=mono_slam_cpp
 ```
@@ -126,15 +113,10 @@ ros2 run ros2_orb_slam3 mono_node_cpp --ros-args -p node_name_arg:=mono_slam_cpp
 In another terminal [python node]
 
 ```bash
-cd ~/ros2_ws
+cd ~/ros2_test
 source ./install/setup.bash
-ros2 run ros2_orb_slam3 mono_driver_node.py --ros-args -p settings_name:=EuRoC -p image_seq:=sample_euroc_MH05
+ros2 run ros2_orb_slam3 mono_driver_node.py --ros-args -p settings_name:=MyCamera -p image_seq:=teknofest_img_dataset
 ```
-
-Both nodes would perform a handshake and the VSLAM framework would then work as shown in the following video clip
-
-
-https://github.com/Mechazo11/ros2_orb_slam3/assets/44814419/af9eaa79-da4b-4405-a4d7-e09242ab9660
 
 
 ## Credits & Acknowledgements
@@ -143,8 +125,3 @@ This repository is a customized fork built for my Teknofest project.
 All credit for the original ROS 2 wrapper implementation goes to **Azmyin Md. Kamal**. 
 All credit for the core ORB-SLAM3 library goes to its original authors: Carlos Campos, Richard Elvira, Juan J. Gómez, José M. M. Montiel, and Juan D. Tardós (University of Zaragoza).
 
-## TODO next version:
-
-- [ ] Stereo mode example
-- [ ] RGBD mode example
-- [ ] Detailed build instructions for `aarch64` based computers i.e. Orin Nano, Raspberry Pi etc.
