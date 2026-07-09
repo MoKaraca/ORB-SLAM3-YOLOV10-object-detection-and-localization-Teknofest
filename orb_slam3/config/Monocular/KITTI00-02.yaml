@@ -1,0 +1,57 @@
+%YAML:1.0
+
+Camera.type: "PinHole"
+
+# Camera calibration and distortion parameters (From your MATLAB calibration)
+# FocalLength: [1.4133e+03 1.4188e+03] -> 1413.3 and 1418.8
+Camera1.fx: 1413.3
+Camera1.fy: 1418.8
+
+# PrincipalPoint: [950.0639 543.3796]
+Camera1.cx: 950.0639
+Camera1.cy: 543.3796
+
+# RadialDistortion: [-0.0091 0.0666]
+Camera1.k1: -0.0091
+Camera1.k2: 0.0666
+
+# TangentialDistortion: [0 0]
+Camera1.p1: 0.0
+Camera1.p2: 0.0
+
+# ImageSize: [1080 1920] (Note: width is 1920, height is 1080)
+Camera.width: 1920
+Camera.height: 1080
+
+Camera.newWidth: 1920
+Camera.newHeight: 1080
+
+# Camera frames per second (set this to whatever FPS your camera shoots at)
+Camera.fps: 30
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters (You can leave these as the default EuRoC values)
+#--------------------------------------------------------------------------------------------
+ORBextractor.nFeatures: 1000
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#---------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1.0
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2.0
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3.0
+Viewer.ViewpointX: 0.0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500.0
+
