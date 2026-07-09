@@ -35,9 +35,9 @@ Camera.fps: 30
 Camera.RGB: 1
 
 #--------------------------------------------------------------------------------------------
-# ORB Parameters (You can leave these as the default EuRoC values)
+# ORB Parameters 
 #--------------------------------------------------------------------------------------------
-ORBextractor.nFeatures: 1000
+ORBextractor.nFeatures: 4000
 ORBextractor.scaleFactor: 1.2
 ORBextractor.nLevels: 8
 ORBextractor.iniThFAST: 20

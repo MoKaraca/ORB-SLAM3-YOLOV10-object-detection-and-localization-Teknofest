@@ -1,7 +1,4 @@
-![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
-![Build Status](https://img.shields.io/badge/Build-Passing-success.svg)
-![ROS2](https://img.shields.io/badge/ROS2-Humble-blue.svg)
-![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)
+
 
 # ROS2 ORB SLAM3 LOCALIZATION & YOLOV10 OBJECT DETECTION
 
@@ -20,26 +17,9 @@ Key contributions and features developed for the competition include:
 
 https://github.com/user-attachments/assets/0840deb5-e9ea-4cd4-902f-52514500cda3
 
-
-
-
-
 ## YOLOV10 VISUAL
 
-
-
-
-
 https://github.com/user-attachments/assets/2fee560c-55b2-4121-b7ff-a61e55d67e6f
-
-
-
-
-
-
-
-
-
 
 ## Recent Improvements & Customizations
 
