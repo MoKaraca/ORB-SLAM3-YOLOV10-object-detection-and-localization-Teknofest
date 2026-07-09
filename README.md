@@ -5,12 +5,38 @@
 
 # ROS2 ORB SLAM3 LOCALIZATION & YOLOV10 OBJECT DETECTION
 
- 
+## Teknofest 2023 Ulaşımda Yapay Zeka (AI in Transportation) Competition
 
-## 🚀 Recent Improvements & Customizations
+This repository contains the localization and object detection pipeline developed for the Teknofest 2023 Ulaşımda Yapay Zeka competition. The system combines omputer vision with visual SLAM to achieve real-time spatial awareness and object tracking.
+
+Key contributions and features developed for the competition include:
+* **Custom Object Detection:** Trained and evaluated custom YOLOv8 (and YOLOv10) models on a massive curated dataset of over 76,000 transportation images.
+* **Extensive Model Optimization:** Conducted over 100 training experiments to incrementally refine model accuracy and performance, producing highly optimized weights.
+* **Validation & Testing:** Implemented automated video slicing and inference testing scripts for continuous validation of model performance on real-world test footage.
+* **ROS2 Integration:** Combined the YOLO vision pipeline with ORB-SLAM3 within a ROS2 Humble environment to provide simultaneous localization, mapping, and intelligent object tracking.
+
+
+## ORB-SLAM3 VISUAL
+
+
+
+
+
+
+
+## YOLOV10 VISUAL
+
+
+
+
+
+
+
+
+## Recent Improvements & Customizations
 
 I've made several critical improvements to the original package to make it more
- robust and easier to use with custom cameras and live streams:
+easier to use with custom cameras and live streams of images:
 
 * **Standardized ROS 2 Image Headers:** I completely removed the custom separate `/mono_py_driver/timestep_msg` topic. Timestamps are now natively embedded and extracted directly from the `sensor_msgs/msg/Image` header, adhering to ROS 2 best practices and preventing synchronization drift.
 * **Smart Python Driver:** The `mono_driver_node.py` has been upgraded to automatically filter out non-image files (like `.json`).
